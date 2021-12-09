@@ -1,0 +1,424 @@
+import React from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+  FlatList,
+  Dimensions,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MyDrawer from '../routes/Drawer';
+import CoustomDrawer from '../routes/CustomDrawer';
+
+import { useIsFocused } from '@react-navigation/native';
+
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
+
+
+export default function AboutPage({ navigation }) {
+  // const navigation = useNavigation();
+
+  return (
+    <>
+      <FocusAwareStatusBar backgroundColor="#3cb371" barStyle="Light-Content" />
+      <ScrollView>
+        <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+          <View style={styles.anandHead}>
+            {/* <View style={styles.HeaderContainerLeft}> */}
+
+            <MaterialCommunityIcons
+              style={styles.toggleDrawer}
+              name={'backburger'}
+              onPress={() => navigation.toggleDrawer('CoustomDrawer')}
+              color="black"
+              size={20}
+            />
+
+            <Text style={styles.HeaderTab}>About</Text>
+
+          </View>
+
+          <View style={[styles.header, { flexDirection: 'row' }]}>
+
+          <View>
+            <Image
+              width="90%"
+              height="80%"
+              resizeMode="contain"
+              style={styles.logoPage}
+              source={require('../../assets/icons/anand-logo.png')} />
+          </View>
+
+        </View>
+
+        </View>
+
+        
+
+        <View style={{ flex: 2 }}>
+          {/*Patients */}
+          <View style={{ backgroundColor: '#fff' }}>
+
+            <View style={styles.patientDetails}>
+
+                
+              <Text style={styles.patientDetailsInfo}>
+              In a web browser, you can link to different pages using an anchor  tag. 
+              
+              When the user clicks on a link, the URL is pushed to the browser history stack. When the user presses the back button, the browser pops the item from the top of the history stack, so the active page is now the previously visited page. React Native doesn't have a built-in idea of a global history stack like a web browser does -- this is where React Navigation enters the story.
+             </Text>
+
+            </View>
+          </View>
+        </View>
+
+      </ScrollView>
+    </>
+  );
+};
+
+const styles = StyleSheet.create({
+  Category: {
+    color: 'black',
+    fontSize: 22,
+    paddingTop: 15,
+    paddingLeft: 15,
+  },
+  HeaderContainerRight: {
+    flex: 1,
+    // right: -46,
+    // paddingTop: 50,
+  },
+  HeaderContainerLeft: {
+    flex: 2,
+    paddingLeft: 20,
+    // paddingTop: 20,
+    // paddingBottom: 14,
+  },
+
+  toggleDrawer: {
+    alignSelf: 'center',
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingLeft: 5,
+  },
+
+  HeaderTab: {
+    fontSize: 28,
+    color: 'black',
+    // fontWeight: 'bold',
+    marginTop: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginLeft: 4,
+    justifyContent: 'center',
+
+    marginBottom: 10,
+
+  },
+
+  header:{
+      marginLeft:25,
+      marginBottom:10,
+      marginTop:20,
+    //   width:100,
+    //   height:100,
+  },
+
+
+  logoPage:{
+    marginLeft:50,
+    width:210,
+    height:210,
+  },
+
+  patientDetailsInfo:{
+    color:'white',
+    fontSize:16,
+    padding:10,
+  },
+
+  anandHead: {
+    flexDirection: 'row',
+    // justifyContent: 'center',
+    backgroundColor: '#3cb371',
+    shadowColor: '#30C1DD',
+    shadowRadius: 10,
+    shadowOpacity: 0.6,
+    elevation: 20,
+    shadowOffset:
+    {
+      width: 0,
+      height: 4
+    },
+    // marginBottom: 10,
+    paddingLeft: 18,
+
+  },
+
+  patientDetails: {
+    // margin: 5,
+    marginLeft: 18,
+    width: '90%',
+    height: 200,
+    borderColor: '#191970',
+    borderWidth: 2,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    // padding: 5,
+    alignItems: 'center',
+    // flexWrap:'wrap',
+    borderRadius: 10,
+    elevation: 20,
+
+  },
+
+  patient: {
+    marginRight: 30,
+    padding: 2,
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
+  patientName: {
+    marginTop: 3,
+    marginHorizontal: 14,
+    flexWrap: 'wrap',
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
+  mobilenoText:{
+    color:'white',
+    fontWeight:'bold',
+    fontSize:16,
+    marginRight:20,
+
+  },
+
+  patientNo: {
+    marginLeft: 50,
+    marginTop: 3,
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
+  mobileno:{
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+    marginLeft: 78,
+  },
+
+  ageText:{
+    color:'white',
+    fontWeight:'bold',
+    fontSize:16,
+    marginRight:20,
+  },
+
+  ageno:{
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+    marginLeft: 150,
+  },
+
+
+
+  hospitalService: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginVertical: 5,
+    margin: 25,
+    elevation: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+
+  },
+
+  // teleService: {
+  //     width: 140,
+  //     height: 150,
+  //     marginTop: 16,
+  //     borderWidth: 2,
+  //     marginLeft: 13,
+
+  //     borderColor: '#ffffff',
+  //     margin: 2,
+  //     justifyContent: 'center',
+  //     borderRadius: 12,
+  //     // shadowRadius:20,    
+
+  // },
+
+  LabReports: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginRight: 50,
+
+  },
+
+  teleServicepicaddUser: {
+    width: 88,
+    height: 88,
+    // marginVertical: 18,
+    marginLeft: 32,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  services: {
+    width: 45,
+    height: 45,
+    marginVertical: 18,
+    marginLeft: 10,
+    marginBottom: 10,
+
+  },
+
+  teleServicepic: {
+    width: 88,
+    height: 88,
+    marginVertical: 18,
+    marginLeft: 130,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginTop: 100,
+    // marginLeft: 90,
+
+
+  },
+
+
+  teleServiceText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    justifyContent: 'center',
+
+  },
+  serivcesOutline: { flexDirection: 'row', flexWrap: 'wrap', margin: 5 },
+
+  serviceContainer: {
+    backgroundColor: 'yellow',
+    height: 70,
+    justifyContent: 'center',
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 10,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  },
+  ServiceName: {
+    fontSize: 14,
+    color: 'grey',
+    textAlign: 'center',
+    marginBottom: 20,
+    marginLeft: 28,
+    margin: 5,
+  },
+
+  ImageSliders: { height: 180, width: '100%', alignSelf: 'center' },
+  UserResponse: {
+    padding: 10,
+    flex: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    borderColor: 'grey',
+    alignItems: 'center',
+  },
+
+  societyCorner: {},
+
+  colorText: {
+    color: 'green',
+    fontSize: 12,
+  },
+  mainText: {
+    fontSize: 14,
+  },
+  EventText: {
+    marginTop: 130,
+    fontSize: 14,
+    alignSelf: 'flex-start',
+    marginRight: 40,
+  },
+
+  societyOptions: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    // alignItems:'center',
+    marginLeft: 8,
+  },
+
+  serviceMatter: {
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  festival: {
+    height: 128,
+    width: 220,
+    justifyContent: 'center',
+  },
+  Health: {
+    fontSize: 14,
+    color: 'grey',
+    textAlign: 'center',
+    marginBottom: 20,
+    marginLeft: 28,
+    margin: 5,
+  },
+
+  Market: {
+    fontSize: 14,
+    color: 'grey',
+    textAlign: 'center',
+    marginBottom: 20,
+    marginLeft: 44,
+    margin: 5,
+  },
+
+  Amenities: {
+    fontSize: 14,
+    color: 'grey',
+    textAlign: 'center',
+    marginBottom: 20,
+    marginLeft: 40,
+    margin: 5,
+  },
+
+  HomeService: {
+    fontSize: 14,
+    color: 'grey',
+    textAlign: 'center',
+    marginBottom: 20,
+    marginLeft: 22,
+    margin: 5,
+  },
+
+  eventBox: {
+
+    borderLeftColor: '#0d46a1',
+    margin: 10,
+    backgroundColor: 'white',
+    width: 220,
+    height: 210,
+
+  },
+});
