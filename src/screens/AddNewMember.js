@@ -226,32 +226,7 @@ const AddNewMember = () => {
                     : null} */}
             </View>
 
-            <View style={styles.pickerstyle} flexDirection="row">
-              <MaterialCommunityIcons
-                name="map-marker"
-                color="#4b0082"
-                size={35}
-              />
-              <Picker
-                selectedValue={data}
-                style={styles.states}
-                onValueChange={(val) => setData({ ...data, colony: val })}
-              >
-                <Picker.Item label="Select State" value="" />
-                <Picker.Item label="Chhattisgarh" value="Chhattisgarh" />
-                <Picker.Item label="M.P" value="M.P" />
-                <Picker.Item label="Andhra Pradesh" value="Andhra Pradesh" />
-                <Picker.Item label="U.P" value="U.P" />
-                <Picker.Item label="Odisha" value="Odisha" />
-              </Picker>
-
-              {/* {data.colony.length !== 0?
-                    <Animatable.View animation="bounceIn">
-                    <Feather name="check-circle" color="green" style={{ marginTop: 15 }} size={15} />
-                    </Animatable.View>
-                    : null}
-                     */}
-            </View>
+             
 
             <View style={styles.action}>
               <MaterialCommunityIcons
@@ -392,6 +367,11 @@ const AddNewMember = () => {
                             <Image style={{ height: 40, width: 40,marginVertical:20}} source={require('../../assets/icons/google.png')} />
                         </View>
                     </View> */}
+
+
+                    {/* =========== Commented for git========= */}
+
+                    {/* =========== Commented for git tutorial========= */}
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
