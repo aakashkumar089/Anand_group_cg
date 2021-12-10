@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState, Component } from "react";
 import { Picker } from "@react-native-picker/picker";
 import {
   View,
@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import DropDown from "./DropDown";
 
 import LinearGradient from "react-native-linear-gradient";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -24,18 +25,22 @@ import axios from "axios";
 import { useMutation, useQueries } from "react-query";
 import { register } from "../utils/api";
 import { useNavigation } from "@react-navigation/core";
+import { Dropdown } from "react-native-material-dropdown";
 import SignInScreen from "./SignInScreen";
 import HomeScreen from "./HomeScreen";
+import { renderNode } from "react-native-elements/dist/helpers";
 
 const Appointment = () => {
   const navigation = useNavigation();
 
-  const [data, setData] = React.useState({
+  const [data, setData] = useState({
     Name: "",
     password: "",
     mobile: "",
     colony: "",
     house: "",
+    Gender: "Male",
+    State: "",
     confirm_pass: "",
     oldAddress: "",
     email: "",
@@ -61,7 +66,7 @@ const Appointment = () => {
     },
   });
 
-  const emailentered = (val) => {
+  emailentered = (val) => {
     if (val.length !== 0) {
       let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
@@ -105,6 +110,25 @@ const Appointment = () => {
     });
   };
 
+  const pickerAppointmentRef = useRef();
+  function open() {
+    pickerAppointmentRef.current.focus();
+  }
+
+  function close() {
+    pickerAppointmentRef.current.blur();
+  }
+
+  const pickerRef = useRef();
+  function open() {
+    pickerRef.current.focus();
+  }
+
+  function close() {
+    pickerRef.current.blur();
+  }
+
+  
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -141,11 +165,11 @@ const Appointment = () => {
                 style={styles.textInput}
                 onChangeText={(val) => setData({ ...data, Name: val })}
               />
-              {data.Name.length > 0 ? (
+              {/* {data.Name.length > 0 ? (
                 <Animatable.View animation="bounceIn">
                   <Feather name="check-circle" color="green" size={15} />
                 </Animatable.View>
-              ) : null}
+              ) : null} */}
             </View>
 
             <View style={styles.action}>
@@ -159,59 +183,14 @@ const Appointment = () => {
                 style={styles.textInput}
                 onChangeText={(val) => setData({ ...data, Name: val })}
               />
-              {data.Name.length > 0 ? (
+              {/* {data.Name.length > 0 ? (
                 <Animatable.View animation="bounceIn">
                   <Feather name="check-circle" color="green" size={15} />
                 </Animatable.View>
-              ) : null}
+              ) : null} */}
             </View>
 
             
-
-            <View style={styles.pickerstyle} flexDirection="row">
-              <MaterialCommunityIcons
-                name="gender-male-female"
-                color="#4b0082"
-                size={30}
-              />
-
-              <Picker
-                selectedValue={data}
-                style={styles.states}
-                onValueChange={(val) => setData({ ...data, colony: val })}
-              >
-                <Picker.Item label="Gender" value="" />
-                <Picker.Item label="Male" value="Male" />
-                <Picker.Item label="Female" value="Female" />
-                <Picker.Item label="Transgender" value="Transgender" />
-              </Picker>
-
-              {/* <TextInput placeholder="Gender" style={styles.textInput} onChangeText={(val) => setData({ ...data, Name: val })} />
-                {data.Name.length > 0?
-                    <Animatable.View animation="bounceIn">
-                    <Feather name="check-circle" color="green" size={15} />
-                    </Animatable.View>
-                    : null} */}
-            </View>
-
-            <View style={styles.pickerstyle} flexDirection="row">
-              <MaterialCommunityIcons
-                name="map-marker"
-                color="#4b0082"
-                size={35}
-              />
-              <Picker
-                selectedValue={data}
-                style={styles.states}
-                onValueChange={(val) => setData({ ...data, colony: val })}
-              >
-                <Picker.Item label="Select State" value="" />
-                <Picker.Item label="Chhattisgarh" value="Chhattisgarh" />
-                <Picker.Item label="M.P" value="M.P" />
-                <Picker.Item label="Andhra Pradesh" value="Andhra Pradesh" />
-                <Picker.Item label="U.P" value="U.P" />
-                <Picker.Item label="Odisha" value="Odisha" />
-              </Picker>
 
               {/* {data.colony.length !== 0?
                     <Animatable.View animation="bounceIn">
@@ -221,6 +200,7 @@ const Appointment = () => {
                      */}
             </View>
 
+                    <DropDown/>
             <View style={styles.action}>
               <MaterialCommunityIcons
                 name="home-city"
@@ -232,11 +212,11 @@ const Appointment = () => {
                 style={styles.textInput}
                 onChangeText={(val) => setData({ ...data, Name: val })}
               />
-              {data.Name.length > 0 ? (
+              {/* {data.Name.length > 0 ? (
                 <Animatable.View animation="bounceIn">
                   <Feather name="check-circle" color="green" size={15} />
                 </Animatable.View>
-              ) : null}
+              ) : null} */}
             </View>
 
             <View style={styles.action}>
@@ -263,11 +243,11 @@ const Appointment = () => {
                 style={styles.textInput}
                 onChangeText={(val) => setData({ ...data, mobile: val })}
               />
-              {data.mobile.length == 10 ? (
+              {/* {data.mobile.length == 10 ? (
                 <Animatable.View animation="bounceIn">
                   <Feather name="check-circle" color="green" size={15} />
                 </Animatable.View>
-              ) : null}
+              ) : null} */}
             </View>
 
             {/* <View style={styles.pickerstyle} flexDirection="row">
@@ -346,7 +326,7 @@ const Appointment = () => {
                 </TouchableOpacity>
               </LinearGradient>
             </View>
-          </View>
+         
 
           {/* <View style={{ alignItems: "center", marginTop: 5, backgroundColor: "#fff" }}>
                         <View style={{ flexDirection: 'row' }}>
@@ -359,10 +339,16 @@ const Appointment = () => {
                             <Image style={{ height: 40, width: 40,marginVertical:20}} source={require('../../assets/icons/google.png')} />
                         </View>
                     </View> */}
+
+                    
         </ScrollView>
+      
       </KeyboardAvoidingView>
+    
     </View>
+    
   );
+
 };
 
 export default Appointment;
@@ -375,12 +361,12 @@ const styles = StyleSheet.create({
     borderRightColor: "#f5fffa",
     borderTopRightRadius: -20,
     borderLeftColor: "#f5fffa",
-    borderLeftWidth: 10,
+    borderLeftWidth: 20,
   },
   header: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     paddingBottom: 10,
   },
   footer: {
@@ -413,7 +399,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     marginTop: Platform.OS === "ios" ? 0 : -12,
-    paddingLeft: 40,
+    paddingLeft: 50,
     color: "#05375a",
   },
   button: {
@@ -431,6 +417,7 @@ const styles = StyleSheet.create({
   states: {
     width: 200,
     marginLeft: 20,
+    backgroundColor: "red",
   },
   logoView: {
     width: 250,
